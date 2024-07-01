@@ -19,7 +19,7 @@ const Sidebar = () => {
               <Link
                 href={link.route}
                 key={link.label}
-                className={cn("flex gap-4 items-center p-4 rounded-lg justify-start transition-all ease-in-out duration-300", { "bg-blue-1": isActive })}
+                className={cn("flex gap-4 items-center p-4 rounded justify-start transition-all ease-in-out duration-300", { "bg-blue-1": isActive })}
               >
                 <Image src={link.imgUrl} alt={link.label} width={20} height={20} />
                 <p className='text-base font-semibold max-lg:hidden'>{link.label}</p>
