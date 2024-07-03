@@ -24,10 +24,10 @@ const MeetingTypeList = () => {
   const [callDetails, setCallDetails] = useState<Call>()
 
   const { user } = useUser();
-  const cloent = useStreamVideoClient();
+  const client = useStreamVideoClient();
 
   const createMeeting = async () => {
-    if (!cloent || !user) return;
+    if (!client || !user) return;
 
     try {
       if (!values.dateTime) {
@@ -36,18 +36,18 @@ const MeetingTypeList = () => {
       }
 
       const id = crypto.randomUUID();
-      const call = cloent.call("default", id);
+      const call = client.call("default", id);
 
       if (!call) throw new Error("Failed to create a call");
 
       const startsAt = values.dateTime.toISOString() || new Date(Date.now()).toISOString();
-      const descptn = values.description || "Instant Meeting";
+      const description = values.description || "Instant Meeting";
 
       await call.getOrCreate({
         data: {
           starts_at: startsAt,
           custom: {
-            descptn,
+            description,
           }
         }
       })
